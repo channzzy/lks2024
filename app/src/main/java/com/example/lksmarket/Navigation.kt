@@ -20,11 +20,6 @@ class Navigation : AppCompatActivity() {
                     supportFragmentManager.beginTransaction().replace(R.id.frame,menuFragment).commit()
                     true
                 }
-                R.id.invoice -> {
-                    val invoiceFragment = InvoiceFragment()
-                    supportFragmentManager.beginTransaction().replace(R.id.frame,invoiceFragment).commit()
-                    true
-                }
                 R.id.profile -> {
                     val profileFragment = ProfileFragment()
                     supportFragmentManager.beginTransaction().replace(R.id.frame, profileFragment).commit()

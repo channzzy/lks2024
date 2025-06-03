@@ -1,14 +1,39 @@
-<?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MenuFragment">
+    android:layout_height="match_parent">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <!-- RecyclerView full screen -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_product"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hallo ini menu" />
+        android:layout_height="match_parent" />
+
+    <!-- Tombol Bayar di bawah, tapi di atas BottomNavigationView -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="#FFFFFF"
+        android:padding="16dp"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="72dp"
+        android:elevation="4dp">
+
+        <TextView
+            android:id="@+id/tv_total_belanja"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Total: Rp0"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/btn_bayar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Bayar Sekarang" />
+    </LinearLayout>
 
 </FrameLayout>

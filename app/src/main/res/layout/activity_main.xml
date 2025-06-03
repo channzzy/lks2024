@@ -97,6 +97,7 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:hint="Username"
+            android:text="emilys"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView4" />
@@ -114,6 +115,7 @@
             app:layout_constraintTop_toBottomOf="@+id/txt_username" />
 
         <EditText
+            android:text="emilyspass"
             android:id="@+id/txt_password"
             android:password="true"
             android:layout_width="match_parent"

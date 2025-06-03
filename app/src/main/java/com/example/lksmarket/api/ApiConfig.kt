@@ -4,7 +4,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiConfig {
-    const val baseUrl = "http://103.187.147.96/api/"
+    const val baseUrl = "https://dummyjson.com/"
 
     fun getRetrofit() : Retrofit{
         return Retrofit.Builder()

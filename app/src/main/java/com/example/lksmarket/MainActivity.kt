@@ -47,15 +47,17 @@ class MainActivity : AppCompatActivity() {
         ApiConfig.getService().login(loginRequest).enqueue(object : Callback<LoginResponse>{
             override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
                 println(response.code())
+                println(response.message())
                 if(response.code() == 200){
-                    if(response.body()?.data != null){
-                        var token = response.body()?.data
+                    println(response.body())
+                    if(response.body() != null){
+                        var token = response.body()?.accessToken
                         sessionManager.setToken("Bearer ${token!!}")
                     }
                     Toast.makeText(this@MainActivity, "Login berhasil dilakukan", Toast.LENGTH_SHORT).show()
                     var intent = Intent(this@MainActivity,Navigation::class.java)
                     startActivity(intent)
-                }else if(response.code() == 422){
+                }else{
                     Toast.makeText(this@MainActivity, "Login gagal dilakukan", Toast.LENGTH_SHORT).show()
                 }
             }
