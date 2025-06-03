@@ -15,6 +15,7 @@ import com.example.lksmarket.R
 import com.example.lksmarket.response.ProductsItem
 
 class ProductAdapter(val products : List<ProductsItem?>?,  val listener: OnProductChangedListener) : RecyclerView.Adapter<ProductAdapter.MyViewHolder>() {
+    private val quantities = mutableMapOf<Int, Int>()
     interface OnProductChangedListener {
         fun onProductAdded(price: Double)
         fun onProductRemoved(price: Double)
@@ -56,6 +57,7 @@ class ProductAdapter(val products : List<ProductsItem?>?,  val listener: OnProdu
         holder.addButton.setOnClickListener {
             val qty = holder.qty.text.toString().toInt() + 1
             holder.qty.text = qty.toString()
+            quantities[position] = qty
             products?.get(position)?.price?.let { price ->
                 listener.onProductAdded(price)
             }
@@ -64,11 +66,33 @@ class ProductAdapter(val products : List<ProductsItem?>?,  val listener: OnProdu
         holder.minusButton.setOnClickListener {
             val currentQty = holder.qty.text.toString().toInt()
             if (currentQty > 0) {
-                holder.qty.text = (currentQty - 1).toString()
+                val qty = currentQty - 1
+                holder.qty.text = qty.toString()
+                quantities[position] = qty
                 products?.get(position)?.price?.let { price ->
                     listener.onProductRemoved(price)
                 }
             }
         }
+    }
+
+    fun getSelectedProducts(): List<ProductsItem> {
+        val selected = mutableListOf<ProductsItem>()
+        for ((position, qty) in quantities) {
+            if (qty > 0) {
+                val product = products?.get(position)
+                if (product != null) {
+                    selected.add(
+                        ProductsItem(
+                            title = product.title.orEmpty(),
+                            price = product.price ?: 0.0,
+                            quantity = qty,
+                            total = (product.price.times(qty) ?: 0.0)
+                        )
+                    )
+                }
+            }
+        }
+        return selected
     }
 }
